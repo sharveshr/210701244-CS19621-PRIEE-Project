@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendation Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        p {
+            text-align: center;
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            color: #ffffff;
+        }
+        th {
+            background-color: #333;
+        }
+        td {
+            background-color: #1f1f1f;
+        }
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommended Lawyers</h1>
+    <p>Predicted Price (in ₹): {{ predicted_price | round(2) }}</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Lawyer Name</th>
+                <th>Location</th>
+                <th>Expertise</th>
+                <th>Fees in ₹</th>
+                <th>Rating (Out of 5)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lawyer in lawyers %}
+                <tr>
+                    <td>{{ lawyer['Lawyer Name'] }}</td>
+                    <td>{{ lawyer['Location'] }}</td>
+                    <td>{{ lawyer['Expertise'] }}</td>
+                    <td>{{ lawyer['Fees'] }}</td>
+                    <td>{{ lawyer['Rating'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a href="{{ url_for('index') }}" class="btn btn-success">Back to Home</a>
+    </div>
+</body>
+</html>
